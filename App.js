@@ -1,19 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import FrequencyGenerator from './components/frequency_generator';
+
+// disable really annoying in app warnings
+console.disableYellowBox = true;
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View style={styles.background}>
+      <FrequencyGenerator />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#21232b',
   },
 });
