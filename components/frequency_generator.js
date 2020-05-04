@@ -180,7 +180,7 @@ class FrequencyGenerator extends Component {
         animationOut="slideOutRight"
         backdropTransitionOutTiming={0}
       >
-        <SettingView close={this.toggleSetting} change={this.settingChanged} />
+        <SettingView close={this.toggleSetting} change={this.settingChanged} alreadyPremium={this.state.isPremium} />
       </Modal>
     );
   }

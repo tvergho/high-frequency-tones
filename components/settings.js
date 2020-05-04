@@ -1,3 +1,4 @@
+/* eslint-disable react/sort-comp */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { Icon, Button } from 'react-native-elements';
@@ -65,6 +66,48 @@ class SettingView extends Component {
     } else return val;
   }
 
+  upgradeSection = () => {
+    if (!this.props.alreadyPremium) {
+      return (
+        <View style={styles.upgradeContainer}>
+          <Text style={styles.upgradeTitle}>Frequency Premium</Text>
+          <View style={styles.upgradeListItem}>
+            <Icon name="check" type="font-awesome" color="black" size={10} style={{ marginRight: 2, paddingTop: 2 }} />
+            <Text style={styles.upgradeDescription}>
+              Eliminate all ads.
+            </Text>
+          </View>
+          <View style={styles.upgradeListItem}>
+            <Icon name="check" type="font-awesome" color="black" size={10} style={{ marginRight: 2, paddingTop: 2 }} />
+            <Text style={styles.upgradeDescription}>
+              Choose from four different custom waveforms.
+            </Text>
+          </View>
+          <View style={styles.upgradeListItem}>
+            <Icon name="check" type="font-awesome" color="black" size={10} style={{ marginRight: 2, paddingTop: 2 }} />
+            <Text style={styles.upgradeDescription}>
+              Automatic access to all new features.
+            </Text>
+          </View>
+          <View style={styles.upgradeListItem}>
+            <Icon name="check" type="font-awesome" color="black" size={10} style={{ marginRight: 2, paddingTop: 2 }} />
+            <Text style={styles.upgradeDescription}>
+              All for only $0.99!
+            </Text>
+          </View>
+          <Button
+            title="Purchase"
+            titleStyle={{ fontWeight: '600' }}
+            containerStyle={{ alignSelf: 'center', marginTop: 10 }}
+            buttonStyle={{ width: '100%', paddingLeft: 20, paddingRight: 20 }}
+          />
+        </View>
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     return (
       <View style={styles.settingsContainer}>
@@ -121,6 +164,8 @@ class SettingView extends Component {
           }}
           valueFormat={this.stripFrequency}
         />
+        <SettingsDividerLong />
+        {this.upgradeSection()}
       </View>
     );
   }
@@ -146,6 +191,27 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 35,
     left: 10,
+  },
+  upgradeContainer: {
+    marginTop: 50,
+    alignItems: 'flex-start',
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: 'rgba(0,0,0,0.4)',
+    padding: 12,
+  },
+  upgradeTitle: {
+    fontWeight: '700',
+    fontFamily: 'System',
+    fontSize: 20,
+    marginBottom: 20,
+  },
+  upgradeDescription: {
+    color: 'rgba(0,0,0,0.8)',
+    marginBottom: 10,
+  },
+  upgradeListItem: {
+    flexDirection: 'row',
   },
 });
 
