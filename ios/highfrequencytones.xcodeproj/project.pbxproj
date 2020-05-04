@@ -14,7 +14,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		B49142EF4B350FD8B475A5AC /* libPods-highfrequencytones.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF919868D4FAA2A201C77A01 /* libPods-highfrequencytones.a */; };
+		5C7CE93C113999CD28FECB6D /* libPods-highfrequencytones.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B3F3691C73E6F1C485EA0C /* libPods-highfrequencytones.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,19 +22,19 @@
 		0731D3B524204D62009CAE85 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Expo.plist; path = highfrequencytones/Supporting/Expo.plist; sourceTree = "<group>"; };
 		07C2E6E3243282B30028AF0A /* app.manifest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = app.manifest; path = highfrequencytones/Supporting/app.manifest; sourceTree = "<group>"; };
 		07C2E6E4243282B30028AF0A /* app.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = app.bundle; path = highfrequencytones/Supporting/app.bundle; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* highfrequencytones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = highfrequencytones.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* frequency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frequency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = highfrequencytones/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = highfrequencytones/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = highfrequencytones/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = highfrequencytones/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = highfrequencytones/main.m; sourceTree = "<group>"; };
+		20AFEEF0F93263EDB8371789 /* Pods-highfrequencytones.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-highfrequencytones.release.xcconfig"; path = "Target Support Files/Pods-highfrequencytones/Pods-highfrequencytones.release.xcconfig"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B11031D8E1E9CE8ACA00488 /* Pods-highfrequencytones.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-highfrequencytones.debug.xcconfig"; path = "Target Support Files/Pods-highfrequencytones/Pods-highfrequencytones.debug.xcconfig"; sourceTree = "<group>"; };
-		E5424E62A5C252E587DFB2FE /* Pods-highfrequencytones.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-highfrequencytones.release.xcconfig"; path = "Target Support Files/Pods-highfrequencytones/Pods-highfrequencytones.release.xcconfig"; sourceTree = "<group>"; };
+		D9B3F3691C73E6F1C485EA0C /* libPods-highfrequencytones.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-highfrequencytones.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E08BBA7756A306FC2E7491E9 /* Pods-highfrequencytones.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-highfrequencytones.debug.xcconfig"; path = "Target Support Files/Pods-highfrequencytones/Pods-highfrequencytones.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		EF919868D4FAA2A201C77A01 /* libPods-highfrequencytones.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-highfrequencytones.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49142EF4B350FD8B475A5AC /* libPods-highfrequencytones.a in Frameworks */,
+				5C7CE93C113999CD28FECB6D /* libPods-highfrequencytones.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,18 +72,9 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				EF919868D4FAA2A201C77A01 /* libPods-highfrequencytones.a */,
+				D9B3F3691C73E6F1C485EA0C /* libPods-highfrequencytones.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		72E5486571395D51695C2A02 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8B11031D8E1E9CE8ACA00488 /* Pods-highfrequencytones.debug.xcconfig */,
-				E5424E62A5C252E587DFB2FE /* Pods-highfrequencytones.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -100,7 +91,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				72E5486571395D51695C2A02 /* Pods */,
+				DAFC9FE7A7B850FDD9294861 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -110,9 +101,19 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* highfrequencytones.app */,
+				13B07F961A680F5B00A75B9A /* frequency.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DAFC9FE7A7B850FDD9294861 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E08BBA7756A306FC2E7491E9 /* Pods-highfrequencytones.debug.xcconfig */,
+				20AFEEF0F93263EDB8371789 /* Pods-highfrequencytones.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,7 +123,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "highfrequencytones" */;
 			buildPhases = (
-				C6C005B8642517B811E985BE /* [CP] Check Pods Manifest.lock */,
+				FA923B4609EEDACF4BF918C4 /* [CP] Check Pods Manifest.lock */,
 				FD4C38642228810C00325AF5 /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
@@ -135,7 +136,7 @@
 			);
 			name = highfrequencytones;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* highfrequencytones.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* frequency.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -196,7 +197,7 @@
 			shellPath = /bin/sh;
 			shellScript = "../node_modules/expo-updates/bundle-expo-assets.sh\n";
 		};
-		C6C005B8642517B811E985BE /* [CP] Check Pods Manifest.lock */ = {
+		FA923B4609EEDACF4BF918C4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -266,7 +267,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B11031D8E1E9CE8ACA00488 /* Pods-highfrequencytones.debug.xcconfig */;
+			baseConfigurationReference = E08BBA7756A306FC2E7491E9 /* Pods-highfrequencytones.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = highfrequencytones/frequency.entitlements;
@@ -287,7 +288,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5424E62A5C252E587DFB2FE /* Pods-highfrequencytones.release.xcconfig */;
+			baseConfigurationReference = 20AFEEF0F93263EDB8371789 /* Pods-highfrequencytones.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = highfrequencytones/frequency.entitlements;
