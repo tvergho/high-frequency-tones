@@ -11,6 +11,7 @@ import Modal from 'react-native-modal';
 import { AdMobBanner } from 'expo-ads-admob';
 import SwitchSelector from 'react-native-switch-selector';
 import * as StoreReview from 'expo-store-review';
+import * as InAppPurchases from 'expo-in-app-purchases';
 import CircleSlider from './CircleSlider';
 import SettingView from './settings';
 import FrequencyEditor from './edit_frequency';
@@ -26,6 +27,7 @@ const incrementValues = {
 };
 
 const centerButtonKey = 'centerButton';
+const premiumPurchased = 'premium';
 
 class FrequencyGenerator extends Component {
   constructor(props) {
@@ -62,11 +64,41 @@ class FrequencyGenerator extends Component {
         };
       });
     }
+    console.log(Settings.get(premiumPurchased));
+    if (Settings.get(premiumPurchased) !== undefined) {
+      const val = Settings.get(premiumPurchased);
+      if (val === 1) {
+        this.setState(() => {
+          return {
+            isPremium: true,
+          };
+        });
+      }
+    }
 
     // Request App Store review.
     if (StoreReview.isAvailableAsync()) {
       StoreReview.requestReview();
     }
+
+    // Set in-app purchase callback.
+    InAppPurchases.setPurchaseListener(({ responseCode, results, errorCode }) => {
+      // Purchase was successful
+      if (responseCode === InAppPurchases.IAPResponseCode.OK) {
+        results.forEach((purchase) => {
+          if (!purchase.acknowledged) {
+            this.setPremium();
+            InAppPurchases.finishTransactionAsync(purchase, true);
+          }
+        });
+      } else if (responseCode === InAppPurchases.IAPResponseCode.USER_CANCELED) {
+        console.log('User canceled the transaction');
+      } else if (responseCode === InAppPurchases.IAPResponseCode.DEFERRED) {
+        console.log('User does not have permissions to buy but requested parental approval (iOS only)');
+      } else {
+        console.warn(`Something went wrong with the purchase. Received errorCode ${errorCode}`);
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -170,6 +202,11 @@ class FrequencyGenerator extends Component {
     this.webRef.injectJavaScript(`synth.oscillator.type = "${wave}";`);
   }
 
+  setPremium = () => {
+    this.setState({ isPremium: true });
+    Settings.set({ premium: 1 });
+  }
+
   settingsModal() {
     return (
       <Modal
@@ -180,7 +217,12 @@ class FrequencyGenerator extends Component {
         animationOut="slideOutRight"
         backdropTransitionOutTiming={0}
       >
-        <SettingView close={this.toggleSetting} change={this.settingChanged} alreadyPremium={this.state.isPremium} />
+        <SettingView
+          close={this.toggleSetting}
+          change={this.settingChanged}
+          alreadyPremium={this.state.isPremium}
+          restore={this.setPremium}
+        />
       </Modal>
     );
   }

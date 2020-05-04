@@ -6,10 +6,12 @@ import {
   StyleSheet, View, Text, Settings,
 } from 'react-native';
 import { SettingsDividerLong } from 'react-native-settings-components';
+import * as InAppPurchases from 'expo-in-app-purchases';
 import SettingsPicker from './picker/picker';
 
 const incrementKey = 'increment';
 const centerButtonKey = 'centerButton';
+const premiumId = 'frequencypremium';
 
 class SettingView extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class SettingView extends Component {
     this.state = {
       increment: '250 Hz',
       centerButton: 'Play',
+      purchaseButton: 'Purchase',
     };
   }
 
@@ -38,6 +41,20 @@ class SettingView extends Component {
         };
       });
     }
+  }
+
+  setRestore = async () => {
+    const history = await InAppPurchases.connectAsync();
+    let wasRestored = false;
+    if (history.responseCode === InAppPurchases.IAPResponseCode.OK) {
+      history.results.forEach((result) => {
+        if (result.productId === premiumId) {
+          this.props.restore();
+          wasRestored = true;
+        }
+      });
+    }
+    return wasRestored;
   }
 
   onIncrementChange = (newVal) => {
@@ -64,6 +81,16 @@ class SettingView extends Component {
     if (val.includes('Frequency')) {
       return 'Edit';
     } else return val;
+  }
+
+  purchase = async () => {
+    const restored = await this.setRestore();
+    if (!restored) {
+      // eslint-disable-next-line no-unused-vars
+      const { responseCode, results } = await InAppPurchases.getProductsAsync([premiumId]);
+      await InAppPurchases.purchaseItemAsync(premiumId);
+    }
+    InAppPurchases.disconnectAsync();
   }
 
   upgradeSection = () => {
@@ -96,10 +123,11 @@ class SettingView extends Component {
             </Text>
           </View>
           <Button
-            title="Purchase"
+            title={this.state.purchaseButton}
             titleStyle={{ fontWeight: '600' }}
             containerStyle={{ alignSelf: 'center', marginTop: 10 }}
             buttonStyle={{ width: '100%', paddingLeft: 20, paddingRight: 20 }}
+            onPress={this.purchase}
           />
         </View>
       );
