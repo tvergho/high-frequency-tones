@@ -7329,7 +7329,7 @@ react-native-switch-selector@^2.0.4:
   resolved "https://registry.yarnpkg.com/react-native-switch-selector/-/react-native-switch-selector-2.0.4.tgz#cac990f59f1990a8db1c04548ff849044d671949"
   integrity sha512-KH2I2br3XAyQhq8UqqfueODn29Rf2QL/ERyDZLAu8j/p57ZoBd79L1G+m6CV2ef+qZqr8V+f5Wp+r5NvUKv4jA==
 
-react-native-unimodules@~0.9.0:
+react-native-unimodules@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/react-native-unimodules/-/react-native-unimodules-0.9.0.tgz#5ce642ac50d124b9d41c09ff7cb397e22f1110ea"
   integrity sha512-zcdNo74d/x19d0JkNiKL+4d71OaivumgfKVdmOYPOGRMOlct6KL3177TvkxgmF7ddlJJIlfftSFtnPuiOfejQA==
