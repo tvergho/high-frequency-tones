@@ -1,3 +1,4 @@
+/* eslint-disable react/sort-comp */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
@@ -8,6 +9,8 @@ import { WebView } from 'react-native-webview';
 import AwesomeButtonBlue from 'react-native-really-awesome-button/src/themes/blue';
 import Modal from 'react-native-modal';
 import { AdMobBanner } from 'expo-ads-admob';
+import SwitchSelector from 'react-native-switch-selector';
+import * as StoreReview from 'expo-store-review';
 import CircleSlider from './CircleSlider';
 import SettingView from './settings';
 import FrequencyEditor from './edit_frequency';
@@ -35,6 +38,8 @@ class FrequencyGenerator extends Component {
       isEditorVisible: false,
       increment: '250 Hz',
       centerButton: 'Play',
+      isPremium: true,
+      wave: 'sine',
     };
   }
 
@@ -55,6 +60,10 @@ class FrequencyGenerator extends Component {
           centerButton: val,
         };
       });
+    }
+
+    if (StoreReview.isAvailableAsync()) {
+      StoreReview.requestReview();
     }
   }
 
@@ -104,8 +113,9 @@ class FrequencyGenerator extends Component {
 
   play = async () => {
     if (!this.state.isPlaying) { // Starts playing.
-      const { freq } = this.state;
+      const { freq, wave } = this.state;
       this.webRef.injectJavaScript(`synth.triggerAttack("${freq}");`);
+      this.webRef.injectJavaScript(`synth.oscillator.type = "${wave}";`);
       this.setState(() => {
         return {
           isPlaying: true,
@@ -119,16 +129,6 @@ class FrequencyGenerator extends Component {
         };
       });
       this.webRef.reload(); // Fixes bugs with WebView.
-
-      /*
-      const hitPercent = 0.4;
-      const random = Math.random();
-      if (random <= hitPercent) {
-        await AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/4411468910');
-        await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
-        await AdMobInterstitial.showAdAsync();
-      }
-      */
     }
   }
 
@@ -142,6 +142,40 @@ class FrequencyGenerator extends Component {
       freq: roundedFreq,
     });
     this.webRef.injectJavaScript(`synth.setNote("${roundedFreq}");`);
+  }
+
+  changeWave = (wave) => {
+    this.setState({
+      wave,
+    });
+    this.webRef.injectJavaScript(`synth.oscillator.type = "${wave}";`);
+  }
+
+  settingsModal() {
+    return (
+      <Modal
+        isVisible={this.state.isSettingsVisible}
+        style={styles.settingsModal}
+        onBackdropPress={this.toggleSetting}
+        animationIn="slideInRight"
+        animationOut="slideOutRight"
+        backdropTransitionOutTiming={0}
+      >
+        <SettingView close={this.toggleSetting} change={this.settingChanged} />
+      </Modal>
+    );
+  }
+
+  editorModal() {
+    return (
+      <Modal
+        isVisible={this.state.isEditorVisible}
+        onBackdropPress={this.toggleEditor}
+        backdropTransitionOutTiming={0}
+      >
+        <FrequencyEditor onChange={this.onEditFreq} close={this.toggleEditor} />
+      </Modal>
+    );
   }
 
   startButton() {
@@ -170,6 +204,35 @@ class FrequencyGenerator extends Component {
         >
           Play
         </AwesomeButtonBlue>
+      );
+    }
+  }
+
+  switchOrAd() {
+    if (this.state.isPremium) {
+      return (
+        <SwitchSelector
+          options={[
+            { label: 'Sine', value: 'sine' },
+            { label: 'Sawtooth', value: 'sawtooth' },
+            { label: 'Square', value: 'square' },
+            { label: 'Triangle', value: 'triangle' },
+          ]}
+          style={styles.waveSelector}
+          initial={0}
+          buttonColor="#1775C8"
+          onPress={this.changeWave}
+        />
+      );
+    } else {
+      return (
+        <AdMobBanner
+          bannerSize="fullBanner"
+          adUnitID="ca-app-pub-3940256099942544/2934735716"
+          servePersonalizedAds
+          onDidFailToReceiveAdWithError={this.bannerError}
+          style={styles.adBanner}
+        />
       );
     }
   }
@@ -226,30 +289,9 @@ class FrequencyGenerator extends Component {
             ignoreSilentHardwareSwitch
           />
         </View>
-        <Modal
-          isVisible={this.state.isSettingsVisible}
-          style={styles.settingsModal}
-          onBackdropPress={this.toggleSetting}
-          animationIn="slideInRight"
-          animationOut="slideOutRight"
-          backdropTransitionOutTiming={0}
-        >
-          <SettingView close={this.toggleSetting} change={this.settingChanged} />
-        </Modal>
-        <Modal
-          isVisible={this.state.isEditorVisible}
-          onBackdropPress={this.toggleEditor}
-          backdropTransitionOutTiming={0}
-        >
-          <FrequencyEditor onChange={this.onEditFreq} close={this.toggleEditor} />
-        </Modal>
-        <AdMobBanner
-          bannerSize="fullBanner"
-          adUnitID="ca-app-pub-3940256099942544/2934735716"
-          servePersonalizedAds
-          onDidFailToReceiveAdWithError={this.bannerError}
-          style={styles.adBanner}
-        />
+        {this.settingsModal()}
+        {this.editorModal()}
+        {this.switchOrAd()}
       </View>
     );
   }
@@ -295,6 +337,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'rgba(255,255,255,0.6)',
     marginTop: 20,
+  },
+  waveSelector: {
+    position: 'absolute',
+    bottom: 30,
   },
 });
 
