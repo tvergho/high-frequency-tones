@@ -1,12 +1,13 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Settings,
+  StyleSheet, View, Settings, Text,
 } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 import { WebView } from 'react-native-webview';
 import AwesomeButtonBlue from 'react-native-really-awesome-button/src/themes/blue';
 import Modal from 'react-native-modal';
+import { AdMobBanner } from 'expo-ads-admob';
 import CircleSlider from './CircleSlider';
 import SettingView from './settings';
 import FrequencyEditor from './edit_frequency';
@@ -37,7 +38,8 @@ class FrequencyGenerator extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    // Updates settings on app launch.
     if (Settings.get(incrementKey) !== undefined) {
       const val = Settings.get(incrementKey);
       this.setState(() => {
@@ -56,6 +58,7 @@ class FrequencyGenerator extends Component {
     }
   }
 
+  // Modal toggles.
   toggleSetting = () => {
     this.setState((prevState) => {
       return {
@@ -72,6 +75,7 @@ class FrequencyGenerator extends Component {
     });
   }
 
+  // Called when the user has changed a setting.
   settingChanged = (key) => {
     const val = Settings.get(key);
     if (key === incrementKey) {
@@ -90,6 +94,7 @@ class FrequencyGenerator extends Component {
     }
   }
 
+  // Updates the current frequency in real-time.
   onEditFreq = (val) => {
     if (val !== '') {
       const newFreq = parseInt(val, 10);
@@ -97,8 +102,8 @@ class FrequencyGenerator extends Component {
     }
   }
 
-  play = () => {
-    if (!this.state.isPlaying) {
+  play = async () => {
+    if (!this.state.isPlaying) { // Starts playing.
       const { freq } = this.state;
       this.webRef.injectJavaScript(`synth.triggerAttack("${freq}");`);
       this.setState(() => {
@@ -106,19 +111,31 @@ class FrequencyGenerator extends Component {
           isPlaying: true,
         };
       });
-    } else {
+    } else { // Stops playing.
       this.webRef.injectJavaScript('synth.triggerRelease();');
       this.setState(() => {
         return {
           isPlaying: false,
         };
       });
+      this.webRef.reload(); // Fixes bugs with WebView.
+
+      /*
+      const hitPercent = 0.4;
+      const random = Math.random();
+      if (random <= hitPercent) {
+        await AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/4411468910');
+        await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
+        await AdMobInterstitial.showAdAsync();
+      }
+      */
     }
   }
 
   changeFreq = (x) => {
-    const divider = incrementValues[this.state.increment];
+    const divider = incrementValues[this.state.increment]; // Either 1, 250, 500, or 1000.
 
+    // Convert angle (out of 360) to a frequency.
     const frequency = ((x / (360 / ((20000 - divider) / divider))) * divider) + divider;
     const roundedFreq = Math.round(frequency / divider) * divider;
     this.setState({
@@ -195,6 +212,9 @@ class FrequencyGenerator extends Component {
           isEditing={this.state.isEditorVisible}
         />
         {this.startButton()}
+        <Text style={styles.silentMode}>
+          Make sure Silent Mode is turned off.
+        </Text>
         <View style={{ height: 0 }}>
           <WebView
             source={toneFile}
@@ -203,6 +223,7 @@ class FrequencyGenerator extends Component {
             style={styles.webview}
             javaScriptEnabled
             useWebKit
+            ignoreSilentHardwareSwitch
           />
         </View>
         <Modal
@@ -222,6 +243,13 @@ class FrequencyGenerator extends Component {
         >
           <FrequencyEditor onChange={this.onEditFreq} close={this.toggleEditor} />
         </Modal>
+        <AdMobBanner
+          bannerSize="fullBanner"
+          adUnitID="ca-app-pub-3940256099942544/2934735716"
+          servePersonalizedAds
+          onDidFailToReceiveAdWithError={this.bannerError}
+          style={styles.adBanner}
+        />
       </View>
     );
   }
@@ -243,7 +271,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     position: 'absolute',
     alignItems: 'flex-start',
-    top: 50,
+    top: 40,
     width: '100%',
     paddingLeft: 20,
     paddingRight: 20,
@@ -257,6 +285,15 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   playButton: {
+    marginTop: 20,
+  },
+  adBanner: {
+    position: 'absolute',
+    bottom: 0,
+  },
+  silentMode: {
+    fontSize: 14,
+    color: 'rgba(255,255,255,0.6)',
     marginTop: 20,
   },
 });

@@ -36,8 +36,8 @@ export default class CircleSlider extends Component {
         const yOrigin = this.props.yCenter - (this.props.dialRadius + this.props.btnRadius);
         const a = this.cartesianToPolar(gs.moveX - xOrigin, gs.moveY - yOrigin);
 
-        if (this.state.angle > (this.props.min + 20) || a < (this.props.max / 2)) {
-          if (Math.abs(this.state.angle - a) < 170) {
+        if (this.state.angle > (this.props.min + 20) || a < (this.props.max / 2)) { // Checks if the current angle's between 0-20 and the user is trying to go between 180-360.
+          if (Math.abs(this.state.angle - a) < 170) { // Ensures the user can't go from 359 -> 180 -> 0.
             if (a <= this.props.min) {
               this.setState({ angle: this.props.min });
             } else if (a >= this.props.max) {
@@ -53,11 +53,14 @@ export default class CircleSlider extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    // Updates the angle along with the frequency while the user is directly editing.
     if ((this.props.freq !== prevProps.freq) && this.props.isEditing) {
       const newAngle = ((360 * this.props.freq) / 20000) - 1;
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ angle: newAngle });
     }
+
+    // Disables and enables the ripple button.
     if (this.props.function !== prevProps.function) {
       if (this.props.function === 'Disable') {
         // eslint-disable-next-line react/no-did-update-set-state
@@ -69,6 +72,7 @@ export default class CircleSlider extends Component {
     }
   }
 
+  // Controls center button behavior.
   centerButton = () => {
     if (this.props.function === 'Play') {
       this.props.play();
