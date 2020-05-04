@@ -63,9 +63,14 @@ class FrequencyGenerator extends Component {
       });
     }
 
+    // Request App Store review.
     if (StoreReview.isAvailableAsync()) {
       StoreReview.requestReview();
     }
+  }
+
+  componentWillUnmount() {
+    this.webRef.reload(); // Fixes weird auditory flickering on background load.
   }
 
   // Modal toggles.
@@ -232,12 +237,27 @@ class FrequencyGenerator extends Component {
         animationIn="fadeIn"
         animationOut="fadeOut"
       >
-        <AdMobBanner
-          bannerSize="mediumRectangle"
-          adUnitID="ca-app-pub-3940256099942544/2934735716"
-          servePersonalizedAds
-          onDidFailToReceiveAdWithError={this.bannerError}
-        />
+        <View>
+          <Button
+            containerStyle={styles.closeAd}
+            icon={(
+              <Icon
+                name="times-circle"
+                type="font-awesome"
+                color="black"
+                size={25}
+              />
+            )}
+            type="clear"
+            onPress={this.toggleAdModal}
+          />
+          <AdMobBanner
+            bannerSize="mediumRectangle"
+            adUnitID="ca-app-pub-3940256099942544/2934735716"
+            servePersonalizedAds
+            onDidFailToReceiveAdWithError={this.bannerError}
+          />
+        </View>
       </Modal>
     );
   }
@@ -380,7 +400,12 @@ const styles = StyleSheet.create({
   },
   waveSelector: {
     position: 'absolute',
-    bottom: 30,
+    bottom: 40,
+  },
+  closeAd: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
   },
 });
 

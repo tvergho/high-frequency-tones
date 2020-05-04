@@ -1,7 +1,7 @@
 module.exports = {
   resolver: {
     /* resolver options */
-    sourceExts: ['js', 'json', 'ts', 'tsx'], // add here
+    sourceExts: ['js', 'json', 'jsx', 'ts', 'tsx'], // add here
   },
   transformer: {
     /* transformer options */
