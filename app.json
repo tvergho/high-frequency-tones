@@ -25,7 +25,12 @@
       "supportsTablet": true,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-4718121180654248~1789257761"
-      }
-    }
+      },
+      "bundleIdentifier": "me.tvergho.frequency"
+    },
+    "android": {
+      "package": "me.tvergho.frequency"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
