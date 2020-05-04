@@ -36,6 +36,7 @@ class FrequencyGenerator extends Component {
       isPlaying: false,
       isSettingsVisible: false,
       isEditorVisible: false,
+      isAdModalVisible: false,
       increment: '250 Hz',
       centerButton: 'Play',
       isPremium: true,
@@ -84,6 +85,14 @@ class FrequencyGenerator extends Component {
     });
   }
 
+  toggleAdModal = () => {
+    this.setState((prevState) => {
+      return {
+        isAdModalVisible: !prevState.isAdModalVisible,
+      };
+    });
+  }
+
   // Called when the user has changed a setting.
   settingChanged = (key) => {
     const val = Settings.get(key);
@@ -114,13 +123,18 @@ class FrequencyGenerator extends Component {
   play = async () => {
     if (!this.state.isPlaying) { // Starts playing.
       const { freq, wave } = this.state;
-      this.webRef.injectJavaScript(`synth.triggerAttack("${freq}");`);
       this.webRef.injectJavaScript(`synth.oscillator.type = "${wave}";`);
+      this.webRef.injectJavaScript(`synth.triggerAttack("${freq}");`);
       this.setState(() => {
         return {
           isPlaying: true,
         };
       });
+
+      const hitRate = 0.2;
+      if (Math.random() <= hitRate && !this.state.isPremium) {
+        this.toggleAdModal();
+      }
     } else { // Stops playing.
       this.webRef.injectJavaScript('synth.triggerRelease();');
       this.setState(() => {
@@ -208,6 +222,26 @@ class FrequencyGenerator extends Component {
     }
   }
 
+  adModal() {
+    return (
+      <Modal
+        isVisible={this.state.isAdModalVisible}
+        style={styles.adModal}
+        onBackdropPress={this.toggleAdModal}
+        backdropTransitionOutTiming={0}
+        animationIn="fadeIn"
+        animationOut="fadeOut"
+      >
+        <AdMobBanner
+          bannerSize="mediumRectangle"
+          adUnitID="ca-app-pub-3940256099942544/2934735716"
+          servePersonalizedAds
+          onDidFailToReceiveAdWithError={this.bannerError}
+        />
+      </Modal>
+    );
+  }
+
   switchOrAd() {
     if (this.state.isPremium) {
       return (
@@ -291,6 +325,7 @@ class FrequencyGenerator extends Component {
         </View>
         {this.settingsModal()}
         {this.editorModal()}
+        {this.adModal()}
         {this.switchOrAd()}
       </View>
     );
@@ -322,6 +357,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     margin: 0,
+  },
+  adModal: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   editFreqTitle: {
     color: 'white',
