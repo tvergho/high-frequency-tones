@@ -39,7 +39,7 @@ class FrequencyGenerator extends Component {
       isAdModalVisible: false,
       increment: '250 Hz',
       centerButton: 'Play',
-      isPremium: true,
+      isPremium: false,
       wave: 'sine',
     };
   }
@@ -238,6 +238,12 @@ class FrequencyGenerator extends Component {
         animationOut="fadeOut"
       >
         <View>
+          <AdMobBanner
+            bannerSize="mediumRectangle"
+            adUnitID="ca-app-pub-3940256099942544/2934735716"
+            servePersonalizedAds
+            onDidFailToReceiveAdWithError={this.bannerError}
+          />
           <Button
             containerStyle={styles.closeAd}
             icon={(
@@ -250,12 +256,6 @@ class FrequencyGenerator extends Component {
             )}
             type="clear"
             onPress={this.toggleAdModal}
-          />
-          <AdMobBanner
-            bannerSize="mediumRectangle"
-            adUnitID="ca-app-pub-3940256099942544/2934735716"
-            servePersonalizedAds
-            onDidFailToReceiveAdWithError={this.bannerError}
           />
         </View>
       </Modal>
