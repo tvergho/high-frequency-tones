@@ -11,10 +11,11 @@
 		074F4BDC2432833400BDB9FE /* app.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 07C2E6E4243282B30028AF0A /* app.bundle */; };
 		074F4BDD2432833400BDB9FE /* app.manifest in Resources */ = {isa = PBXBuildFile; fileRef = 07C2E6E3243282B30028AF0A /* app.manifest */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		529167252460B09300D5C00B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529167242460B09300D5C00B /* StoreKit.framework */; };
+		529167292461107D00D5C00B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529167282461107D00D5C00B /* Launch Screen.storyboard */; };
+		5291672B24611B8000D5C00B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5291672A24611B8000D5C00B /* LaunchScreen.xib */; };
 		52C9208224609E060094DD3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C9208124609E060094DD3E /* GoogleService-Info.plist */; };
 		5C7CE93C113999CD28FECB6D /* libPods-highfrequencytones.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B3F3691C73E6F1C485EA0C /* libPods-highfrequencytones.a */; };
 /* End PBXBuildFile section */
@@ -27,13 +28,14 @@
 		13B07F961A680F5B00A75B9A /* High Frequency Tones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "High Frequency Tones.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = highfrequencytones/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = highfrequencytones/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = highfrequencytones/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = highfrequencytones/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = highfrequencytones/main.m; sourceTree = "<group>"; };
 		20AFEEF0F93263EDB8371789 /* Pods-highfrequencytones.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-highfrequencytones.release.xcconfig"; path = "Target Support Files/Pods-highfrequencytones/Pods-highfrequencytones.release.xcconfig"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		529167242460B09300D5C00B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		529167282461107D00D5C00B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		5291672A24611B8000D5C00B /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		52C9208124609E060094DD3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D9B3F3691C73E6F1C485EA0C /* libPods-highfrequencytones.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-highfrequencytones.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E08BBA7756A306FC2E7491E9 /* Pods-highfrequencytones.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-highfrequencytones.debug.xcconfig"; path = "Target Support Files/Pods-highfrequencytones/Pods-highfrequencytones.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,11 +65,12 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				0731D3B524204D62009CAE85 /* Expo.plist */,
 				07C2E6E4243282B30028AF0A /* app.bundle */,
 				07C2E6E3243282B30028AF0A /* app.manifest */,
+				529167282461107D00D5C00B /* Launch Screen.storyboard */,
+				5291672A24611B8000D5C00B /* LaunchScreen.xib */,
 			);
 			name = highfrequencytones;
 			sourceTree = "<group>";
@@ -186,9 +189,10 @@
 				074F4BDC2432833400BDB9FE /* app.bundle in Resources */,
 				074F4BDD2432833400BDB9FE /* app.manifest in Resources */,
 				0731D3B824204D62009CAE85 /* Expo.plist in Resources */,
+				5291672B24611B8000D5C00B /* LaunchScreen.xib in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				52C9208224609E060094DD3E /* GoogleService-Info.plist in Resources */,
+				529167292461107D00D5C00B /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,18 +278,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = highfrequencytones;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -317,6 +309,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = highfrequencytones/frequency.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = A8566N6JEE;
 				INFOPLIST_FILE = highfrequencytones/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

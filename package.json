@@ -3,6 +3,7 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "build:ios": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -39,6 +40,7 @@
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "~2.2.0",
     "react-native-settings-components": "^0.0.2",
+    "react-native-splash-screen": "3.0.6",
     "react-native-svg": "11.0.1",
     "react-native-switch-selector": "^2.0.4",
     "react-native-unimodules": "^0.9.0",

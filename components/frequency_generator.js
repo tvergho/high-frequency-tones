@@ -12,12 +12,13 @@ import { AdMobBanner, setTestDeviceIDAsync } from 'expo-ads-admob';
 import SwitchSelector from 'react-native-switch-selector';
 import * as StoreReview from 'expo-store-review';
 import * as InAppPurchases from 'expo-in-app-purchases';
+import { Asset } from 'expo-asset';
 import * as WaveIcons from './wave_icons';
 import CircleSlider from './CircleSlider';
 import SettingView from './settings';
 import FrequencyEditor from './edit_frequency';
 
-const toneFile = require('./tone.html');
+const toneFile = Asset.fromModule(require('./tone.html')).uri;
 
 const incrementKey = 'increment';
 const incrementValues = {
@@ -387,7 +388,7 @@ class FrequencyGenerator extends Component {
         </Text>
         <View style={{ height: 0 }}>
           <WebView
-            source={toneFile}
+            source={{ uri: toneFile }}
             // eslint-disable-next-line no-return-assign
             ref={(r) => (this.webRef = r)}
             style={styles.webview}

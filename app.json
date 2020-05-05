@@ -22,12 +22,16 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "packagerOpts": {
+      "assetExts": ["html"]
+    },
     "ios": {
       "supportsTablet": true,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-4718121180654248~1789257761"
       },
-      "bundleIdentifier": "me.tvergho.frequency"
+      "bundleIdentifier": "me.tvergho.frequency",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "package": "me.tvergho.frequency"

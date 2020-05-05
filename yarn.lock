@@ -7362,6 +7362,11 @@ react-native-settings-components@^0.0.2:
     lodash "^4.17.11"
     react-native-dialogs "^1.0.2"
 
+react-native-splash-screen@3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.0.6.tgz#c0bbf2c8ae40a313c4c7044f55e569414ff68332"
+  integrity sha512-yaTnGAHRyhduLSfD85gP3Vsf0BRePHW3aNNtDXbkbUhwIIeafu2cJH86U/qKFuKLMYLnFOXteOkP80gaYVGAYg==
+
 react-native-status-bar-height@^2.2.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.5.0.tgz#bc0fb85230603850aab9667ee8111a62954de90c"
