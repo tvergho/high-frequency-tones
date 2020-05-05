@@ -42,16 +42,21 @@ class SettingView extends Component {
     }
   }
 
-  restore = async () => {
+  restore = async (doDisconnect) => {
     const history = await InAppPurchases.connectAsync();
+    let wasRestored = false;
     if (history.responseCode === InAppPurchases.IAPResponseCode.OK) {
       history.results.forEach((result) => {
         if (result.productId === premiumId) {
           this.props.restore();
+          wasRestored = true;
         }
       });
     }
-    InAppPurchases.disconnectAsync();
+    if (doDisconnect !== undefined && doDisconnect) {
+      InAppPurchases.disconnectAsync();
+    }
+    return wasRestored;
   }
 
   onIncrementChange = (newVal) => {
@@ -81,10 +86,14 @@ class SettingView extends Component {
   }
 
   purchase = async () => {
-    await InAppPurchases.connectAsync();
-    // eslint-disable-next-line no-unused-vars
-    const { responseCode, results } = await InAppPurchases.getProductsAsync([premiumId]);
-    await InAppPurchases.purchaseItemAsync(premiumId);
+    const restored = await this.restore();
+    if (!restored) {
+      // eslint-disable-next-line no-unused-vars
+      const { responseCode, results } = await InAppPurchases.getProductsAsync([premiumId]);
+      if (responseCode === InAppPurchases.IAPResponseCode.OK) {
+        await InAppPurchases.purchaseItemAsync(premiumId);
+      }
+    }
     InAppPurchases.disconnectAsync();
   }
 
@@ -129,7 +138,7 @@ class SettingView extends Component {
             type="clear"
             containerStyle={{ alignSelf: 'center', marginTop: 10 }}
             titleStyle={{ fontSize: 14 }}
-            onPress={this.restore}
+            onPress={() => this.restore(true)}
           />
         </View>
       );

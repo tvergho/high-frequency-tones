@@ -179,7 +179,7 @@ class FrequencyGenerator extends Component {
         };
       });
 
-      const hitRate = 0.2;
+      const hitRate = 0.4;
       if (Math.random() <= hitRate && !this.state.isPremium) {
         this.toggleAdModal();
       }
