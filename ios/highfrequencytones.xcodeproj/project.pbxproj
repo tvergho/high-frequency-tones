@@ -305,6 +305,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.tvergho.frequency;
 				PRODUCT_NAME = frequency;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -326,6 +327,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.tvergho.frequency;
 				PRODUCT_NAME = frequency;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

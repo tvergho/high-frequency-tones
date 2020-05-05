@@ -64,7 +64,6 @@ class FrequencyGenerator extends Component {
         };
       });
     }
-    console.log(Settings.get(premiumPurchased));
     if (Settings.get(premiumPurchased) !== undefined) {
       const val = Settings.get(premiumPurchased);
       if (val === 1) {
