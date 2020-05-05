@@ -20,7 +20,6 @@ class SettingView extends Component {
     this.state = {
       increment: '250 Hz',
       centerButton: 'Play',
-      purchaseButton: 'Purchase',
     };
   }
 
@@ -43,18 +42,16 @@ class SettingView extends Component {
     }
   }
 
-  setRestore = async () => {
+  restore = async () => {
     const history = await InAppPurchases.connectAsync();
-    let wasRestored = false;
     if (history.responseCode === InAppPurchases.IAPResponseCode.OK) {
       history.results.forEach((result) => {
         if (result.productId === premiumId) {
           this.props.restore();
-          wasRestored = true;
         }
       });
     }
-    return wasRestored;
+    InAppPurchases.disconnectAsync();
   }
 
   onIncrementChange = (newVal) => {
@@ -84,12 +81,10 @@ class SettingView extends Component {
   }
 
   purchase = async () => {
-    const restored = await this.setRestore();
-    if (!restored) {
-      // eslint-disable-next-line no-unused-vars
-      const { responseCode, results } = await InAppPurchases.getProductsAsync([premiumId]);
-      await InAppPurchases.purchaseItemAsync(premiumId);
-    }
+    await InAppPurchases.connectAsync();
+    // eslint-disable-next-line no-unused-vars
+    const { responseCode, results } = await InAppPurchases.getProductsAsync([premiumId]);
+    await InAppPurchases.purchaseItemAsync(premiumId);
     InAppPurchases.disconnectAsync();
   }
 
@@ -123,11 +118,18 @@ class SettingView extends Component {
             </Text>
           </View>
           <Button
-            title={this.state.purchaseButton}
+            title="Purchase"
             titleStyle={{ fontWeight: '600' }}
             containerStyle={{ alignSelf: 'center', marginTop: 10 }}
             buttonStyle={{ width: '100%', paddingLeft: 20, paddingRight: 20 }}
             onPress={this.purchase}
+          />
+          <Button
+            title="Restore Purchase"
+            type="clear"
+            containerStyle={{ alignSelf: 'center', marginTop: 10 }}
+            titleStyle={{ fontSize: 14 }}
+            onPress={this.restore}
           />
         </View>
       );

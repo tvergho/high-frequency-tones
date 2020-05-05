@@ -7292,6 +7292,18 @@ react-native-elements@^2.0.0:
     react-native-ratings "^6.5.0"
     react-native-status-bar-height "^2.2.0"
 
+react-native-fbads@^6.3.1:
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-fbads/-/react-native-fbads-6.3.1.tgz#31c53eabccab6b0615e8a487223720af94be3ff6"
+  integrity sha512-DxAdHX8xDJ5/VyyFseyRJVPjzfI5+0MLJY4AC2nQqx706oAIkti/UAYQVQymeuiCeyU7lNKizmUlolhk6LeoTA==
+  dependencies:
+    fbemitter "^2.1.1"
+
+react-native-fbsdk@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-fbsdk/-/react-native-fbsdk-1.1.2.tgz#4264903add869d05b84ef55ade9ff720c2957781"
+  integrity sha512-Sp+oja868QVsB5vpEFbwZkEcCJOSBuZgh7UGJzUhaoTCs/zwSUHA6b4QichM7GiTxtQyKfT/F31DtvLj2N/qAQ==
+
 react-native-gesture-handler@~1.6.0:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.6.1.tgz#678e2dce250ed66e93af409759be22cd6375dd17"

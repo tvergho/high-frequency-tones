@@ -36,6 +36,9 @@ target 'highfrequencytones' do
   pod 'glog', :podspec => "#{rnPrefix}/third-party-podspecs/glog.podspec"
   pod 'Folly', :podspec => "#{rnPrefix}/third-party-podspecs/Folly.podspec"
   pod 'Firebase/Analytics'
+  pod 'FBAudienceNetwork'
+  pod 'FBSDKCoreKit'  
+  pod 'ReactNativeAdsFacebook', :path => '../node_modules/react-native-fbads'
 
   # Other native modules
 

@@ -16,6 +16,7 @@
 		529167252460B09300D5C00B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529167242460B09300D5C00B /* StoreKit.framework */; };
 		529167292461107D00D5C00B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529167282461107D00D5C00B /* Launch Screen.storyboard */; };
 		5291672B24611B8000D5C00B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5291672A24611B8000D5C00B /* LaunchScreen.xib */; };
+		5291672D246153F300D5C00B /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5291672C246153F300D5C00B /* FBAudienceNetwork.framework */; };
 		52C9208224609E060094DD3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C9208124609E060094DD3E /* GoogleService-Info.plist */; };
 		5C7CE93C113999CD28FECB6D /* libPods-highfrequencytones.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B3F3691C73E6F1C485EA0C /* libPods-highfrequencytones.a */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		529167242460B09300D5C00B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		529167282461107D00D5C00B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5291672A24611B8000D5C00B /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		5291672C246153F300D5C00B /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = Pods/FBAudienceNetwork/Static/FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		52C9208124609E060094DD3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D9B3F3691C73E6F1C485EA0C /* libPods-highfrequencytones.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-highfrequencytones.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E08BBA7756A306FC2E7491E9 /* Pods-highfrequencytones.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-highfrequencytones.debug.xcconfig"; path = "Target Support Files/Pods-highfrequencytones/Pods-highfrequencytones.debug.xcconfig"; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5291672D246153F300D5C00B /* FBAudienceNetwork.framework in Frameworks */,
 				5C7CE93C113999CD28FECB6D /* libPods-highfrequencytones.a in Frameworks */,
 				529167252460B09300D5C00B /* StoreKit.framework in Frameworks */,
 			);
@@ -59,6 +62,7 @@
 		13B07FAE1A68108700A75B9A /* highfrequencytones */ = {
 			isa = PBXGroup;
 			children = (
+				5291672C246153F300D5C00B /* FBAudienceNetwork.framework */,
 				52C9208124609E060094DD3E /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -139,6 +143,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle Expo Assets */,
 				6AC026C5C2C6C45E265BEE3A /* [CP-User] [RNFB] Core Configuration */,
+				053109E75A977D7FB3A29FB0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -213,6 +218,24 @@
 			shellPath = /bin/sh;
 			shellScript = "../node_modules/expo-updates/bundle-expo-assets.sh\n";
 		};
+		053109E75A977D7FB3A29FB0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-highfrequencytones/Pods-highfrequencytones-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-highfrequencytones/Pods-highfrequencytones-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6AC026C5C2C6C45E265BEE3A /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,11 +308,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = highfrequencytones/frequency.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = A8566N6JEE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/FBAudienceNetwork/Static",
+				);
 				INFOPLIST_FILE = highfrequencytones/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -308,11 +336,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = highfrequencytones/frequency.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = A8566N6JEE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/FBAudienceNetwork/Static",
+				);
 				INFOPLIST_FILE = highfrequencytones/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

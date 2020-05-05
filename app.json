@@ -36,6 +36,8 @@
     "android": {
       "package": "me.tvergho.frequency"
     },
-    "entryPoint": "node_modules/expo/AppEntry.js"
+    "entryPoint": "node_modules/expo/AppEntry.js",
+    "facebookAppId": "2563538573910425",
+    "facebookDisplayName": "Frequency"
   }
 }

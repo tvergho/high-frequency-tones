@@ -8,11 +8,11 @@ import { Icon, Button } from 'react-native-elements';
 import { WebView } from 'react-native-webview';
 import AwesomeButtonBlue from 'react-native-really-awesome-button/src/themes/blue';
 import Modal from 'react-native-modal';
-import { AdMobBanner, setTestDeviceIDAsync } from 'expo-ads-admob';
 import SwitchSelector from 'react-native-switch-selector';
 import * as StoreReview from 'expo-store-review';
 import * as InAppPurchases from 'expo-in-app-purchases';
 import { Asset } from 'expo-asset';
+import { AdSettings, BannerView } from 'react-native-fbads';
 import * as WaveIcons from './wave_icons';
 import CircleSlider from './CircleSlider';
 import SettingView from './settings';
@@ -105,8 +105,10 @@ class FrequencyGenerator extends Component {
     });
   }
 
-  setTestDevice = async () => {
-    await setTestDeviceIDAsync('4557860862b7bd16147a9c6ddaf12c5d');
+  setTestDevice = () => {
+    console.log(`test ${AdSettings.currentDeviceHash}`);
+    // AdSettings.clearTestDevices();
+    // AdSettings.addTestDevice(AdSettings.currentDeviceHash);
   };
 
   componentWillUnmount() {
@@ -126,7 +128,6 @@ class FrequencyGenerator extends Component {
     this.setState((prevState) => {
       return {
         isEditorVisible: !prevState.isEditorVisible,
-        isBackdropVisible: false,
       };
     });
   }
@@ -135,6 +136,7 @@ class FrequencyGenerator extends Component {
     this.setState((prevState) => {
       return {
         isAdModalVisible: !prevState.isAdModalVisible,
+        isBackdropVisible: false,
       };
     });
   }
@@ -284,19 +286,18 @@ class FrequencyGenerator extends Component {
         isVisible={this.state.isAdModalVisible}
         style={styles.adModal}
         onBackdropPress={this.toggleAdModal}
-        hasBackdrop={this.state.isBackdropVisible}
         backdropTransitionOutTiming={0}
+        backdropOpacity={this.state.isBackdropVisible ? 0.7 : 0} // Regulates the backdrop to only become visible upon ad load.
         animationIn="fadeIn"
         animationOut="fadeOut"
       >
-        <View>
-          <AdMobBanner
-            bannerSize="mediumRectangle"
-            adUnitID="ca-app-pub-4718121180654248/4917876181"
-            servePersonalizedAds
-            onAdViewWillPresentScreen={() => this.setState({ isBackdropVisible: false })}
-            onAdViewDidReceiveAd={() => this.setState({ isBackdropVisible: true })}
-            onDidFailToReceiveAdWithError={this.toggleAdModal}
+        <View style={{ width: 300 }}>
+          <BannerView
+            type="rectangle"
+            placementId="528943271118775_528960087783760"
+            onLoad={() => this.setState({ isBackdropVisible: true })}
+            onError={this.toggleAdModal}
+            style={styles.adModalActual}
           />
           <Button
             containerStyle={styles.closeAd}
@@ -310,6 +311,7 @@ class FrequencyGenerator extends Component {
             )}
             type="clear"
             onPress={this.toggleAdModal}
+            style={{ display: this.state.isBackdropVisible ? 'flex' : 'none' }}
           />
         </View>
       </Modal>
@@ -334,12 +336,11 @@ class FrequencyGenerator extends Component {
       );
     } else {
       return (
-        <AdMobBanner
-          bannerSize="fullBanner"
-          adUnitID="ca-app-pub-4718121180654248/7939308118"
-          servePersonalizedAds
-          onDidFailToReceiveAdWithError={this.bannerError}
+        <BannerView
+          type="standard"
+          placementId="528943271118775_528943641118738"
           style={styles.adBanner}
+          onError={(err) => console.log('error', err)}
         />
       );
     }
@@ -437,6 +438,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  adModalActual: {
+    width: '100%',
+  },
   editFreqTitle: {
     color: 'white',
   },
@@ -445,6 +449,7 @@ const styles = StyleSheet.create({
   },
   adBanner: {
     position: 'absolute',
+    left: 0,
     bottom: 0,
   },
   silentMode: {
