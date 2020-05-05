@@ -3,6 +3,7 @@ import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import FrequencyGenerator from './components/frequency_generator';
+import 'expo-asset';
 
 // disable really annoying in app warnings
 console.disableYellowBox = true;

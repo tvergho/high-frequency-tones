@@ -8,10 +8,11 @@ import { Icon, Button } from 'react-native-elements';
 import { WebView } from 'react-native-webview';
 import AwesomeButtonBlue from 'react-native-really-awesome-button/src/themes/blue';
 import Modal from 'react-native-modal';
-import { AdMobBanner } from 'expo-ads-admob';
+import { AdMobBanner, setTestDeviceIDAsync } from 'expo-ads-admob';
 import SwitchSelector from 'react-native-switch-selector';
 import * as StoreReview from 'expo-store-review';
 import * as InAppPurchases from 'expo-in-app-purchases';
+import * as WaveIcons from './wave_icons';
 import CircleSlider from './CircleSlider';
 import SettingView from './settings';
 import FrequencyEditor from './edit_frequency';
@@ -39,6 +40,7 @@ class FrequencyGenerator extends Component {
       isSettingsVisible: false,
       isEditorVisible: false,
       isAdModalVisible: false,
+      isBackdropVisible: false,
       increment: '250 Hz',
       centerButton: 'Play',
       isPremium: false,
@@ -47,6 +49,8 @@ class FrequencyGenerator extends Component {
   }
 
   componentDidMount() {
+    this.setTestDevice();
+
     // Updates settings on app launch.
     if (Settings.get(incrementKey) !== undefined) {
       const val = Settings.get(incrementKey);
@@ -100,6 +104,10 @@ class FrequencyGenerator extends Component {
     });
   }
 
+  setTestDevice = async () => {
+    await setTestDeviceIDAsync('4557860862b7bd16147a9c6ddaf12c5d');
+  };
+
   componentWillUnmount() {
     this.webRef.reload(); // Fixes weird auditory flickering on background load.
   }
@@ -117,6 +125,7 @@ class FrequencyGenerator extends Component {
     this.setState((prevState) => {
       return {
         isEditorVisible: !prevState.isEditorVisible,
+        isBackdropVisible: false,
       };
     });
   }
@@ -274,6 +283,7 @@ class FrequencyGenerator extends Component {
         isVisible={this.state.isAdModalVisible}
         style={styles.adModal}
         onBackdropPress={this.toggleAdModal}
+        hasBackdrop={this.state.isBackdropVisible}
         backdropTransitionOutTiming={0}
         animationIn="fadeIn"
         animationOut="fadeOut"
@@ -281,9 +291,11 @@ class FrequencyGenerator extends Component {
         <View>
           <AdMobBanner
             bannerSize="mediumRectangle"
-            adUnitID="ca-app-pub-3940256099942544/2934735716"
+            adUnitID="ca-app-pub-4718121180654248/4917876181"
             servePersonalizedAds
-            onDidFailToReceiveAdWithError={this.bannerError}
+            onAdViewWillPresentScreen={() => this.setState({ isBackdropVisible: false })}
+            onAdViewDidReceiveAd={() => this.setState({ isBackdropVisible: true })}
+            onDidFailToReceiveAdWithError={this.toggleAdModal}
           />
           <Button
             containerStyle={styles.closeAd}
@@ -308,10 +320,10 @@ class FrequencyGenerator extends Component {
       return (
         <SwitchSelector
           options={[
-            { label: 'Sine', value: 'sine' },
-            { label: 'Sawtooth', value: 'sawtooth' },
-            { label: 'Square', value: 'square' },
-            { label: 'Triangle', value: 'triangle' },
+            { label: 'Sine', value: 'sine', customIcon: WaveIcons.SineWave },
+            { label: 'Sawtooth', value: 'sawtooth', customIcon: WaveIcons.SawtoothWave },
+            { label: 'Square', value: 'square', customIcon: WaveIcons.SquareWave },
+            { label: 'Triangle', value: 'triangle', customIcon: WaveIcons.TriangleWave },
           ]}
           style={styles.waveSelector}
           initial={0}
@@ -323,7 +335,7 @@ class FrequencyGenerator extends Component {
       return (
         <AdMobBanner
           bannerSize="fullBanner"
-          adUnitID="ca-app-pub-3940256099942544/2934735716"
+          adUnitID="ca-app-pub-4718121180654248/7939308118"
           servePersonalizedAds
           onDidFailToReceiveAdWithError={this.bannerError}
           style={styles.adBanner}

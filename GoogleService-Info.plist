@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>153553045950-gu0ujvg31jqh9ctif07kpmlpaosssata.apps.googleusercontent.com</string>
+	<string>96234853311-ks8c2sua0pko5466pd5qp54qpvv7kcck.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.153553045950-gu0ujvg31jqh9ctif07kpmlpaosssata</string>
+	<string>com.googleusercontent.apps.96234853311-ks8c2sua0pko5466pd5qp54qpvv7kcck</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB1azgKj4WNtSnIpTAA_pPa7Cn-3GPw-_c</string>
+	<string>AIzaSyCzDL4B6mla7WUvbhqJPw5ZF7OS77_qvxM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>153553045950</string>
+	<string>96234853311</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>me.tvergho.frequency</string>
 	<key>PROJECT_ID</key>
-	<string>frequency-7d45c</string>
+	<string>frequency-2e83f</string>
 	<key>STORAGE_BUCKET</key>
-	<string>frequency-7d45c.appspot.com</string>
+	<string>frequency-2e83f.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,10 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:153553045950:ios:c48e6bfb8b2a20c497d1ef</string>
+	<string>1:96234853311:ios:3521640bafe94b671ac70a</string>
 	<key>DATABASE_URL</key>
-	<string>https://frequency-7d45c.firebaseio.com</string>
+	<string>https://frequency-2e83f.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-4718121180654248~1789257761</string>
 </dict>
 </plist>
