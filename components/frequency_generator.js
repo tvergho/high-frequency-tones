@@ -2,7 +2,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Settings, Text,
+  StyleSheet, View, Settings, Text, AppState,
 } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 import { WebView } from 'react-native-webview';
@@ -46,11 +46,13 @@ class FrequencyGenerator extends Component {
       centerButton: 'Play',
       isPremium: false,
       wave: 'sine',
+      appState: AppState.currentState,
     };
   }
 
   componentDidMount() {
     this.setTestDevice();
+    AppState.addEventListener('change', this._handleAppStateChange);
 
     // Updates settings on app launch.
     if (Settings.get(incrementKey) !== undefined) {
@@ -113,6 +115,17 @@ class FrequencyGenerator extends Component {
 
   componentWillUnmount() {
     this.webRef.reload(); // Fixes weird auditory flickering on background load.
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  _handleAppStateChange = (nextAppState) => {
+    if (
+      this.state.appState.match(/inactive|background/)
+      && nextAppState === 'active' && !this.state.isPlaying
+    ) {
+      this.webRef.reload();
+    }
+    this.setState({ appState: nextAppState });
   }
 
   // Modal toggles.
@@ -179,7 +192,7 @@ class FrequencyGenerator extends Component {
         };
       });
 
-      const hitRate = 0.4;
+      const hitRate = 0.25;
       if (Math.random() <= hitRate && !this.state.isPremium) {
         this.toggleAdModal();
       }
